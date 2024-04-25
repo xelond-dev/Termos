@@ -5,12 +5,10 @@ setlocal enabledelayedexpansion
 :UpdateMark
 where git >nul 2>&1
 if %errorlevel% equ 0 (
-    echo Git is installed on this system.
-    
-
+    git fetch
     for /f %%i in ('git diff origin/main') do set diff_output=%%i
 
-    if "%diff_output%"=="" (
+    if "!diff_output!"=="" (
         echo Already up to date.
     ) else (
         echo Updating..
@@ -18,8 +16,6 @@ if %errorlevel% equ 0 (
         echo Updated successfully.
         timeout /t 5
     )
-
-    pause
 ) else (
     echo Git is not installed on this system.
 
