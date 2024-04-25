@@ -1,5 +1,5 @@
 @echo off
-title Termux Updater
+title Termos Updater
 setlocal enabledelayedexpansion
 
 :UpdateMark
@@ -12,6 +12,8 @@ if %errorlevel% equ 0 (
         echo Already up to date.
     ) else (
         echo Updating..
+        git checkout -- Termos.bat
+        git checkout -- Updater.bat
         git pull
         echo Updated successfully.
         timeout /t 5
